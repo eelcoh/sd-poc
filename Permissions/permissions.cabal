@@ -1,0 +1,32 @@
+name:          permissions
+version:       0.0.4
+cabal-version: >= 1.8
+build-type:    Simple
+
+library
+  hs-source-dirs:   ./src
+  exposed-modules:  Utils.Elmify
+                  , Utils.Bytes
+                  , Service.Registry
+                  , Service.Types
+                  , Permissions
+  build-depends:    base >= 4.7 && < 5
+                  , bytestring
+                  , aeson
+                  , text
+                  , HTTP
+                  , bytestring
+                  , hostname
+
+executable          permissions
+  hs-source-dirs:   ./app
+  main-is:          Main.hs
+  ghc-options:      -Wall -threaded -O2 -rtsopts -with-rtsopts=-N
+  extensions:       OverloadedStrings
+  build-depends:    base   >= 4      && < 5
+                  , permissions
+                  , scotty
+                  , wai-extra
+                  , text
+                  , hostname
+                  , mtl

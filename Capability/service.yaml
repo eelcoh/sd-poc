@@ -1,0 +1,15 @@
+---
+kind: "Service"
+apiVersion: "v1"
+metadata:
+  name: capability
+  labels:
+    name: capability
+    version: 0.0.5
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: external
+  selector:
+    name: capability

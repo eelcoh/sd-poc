@@ -1,0 +1,9 @@
+Permissions/.stack-work/
+Environment/.stack-work/
+Capability/.stack-work/
+ServiceDiscovery/.stack-work/
+
+
+*.dyn_hi
+
+*.h

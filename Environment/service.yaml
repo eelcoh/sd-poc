@@ -1,0 +1,15 @@
+---
+kind: "Service"
+apiVersion: "v1"
+metadata:
+  name: environment
+  labels:
+    name: environment
+    version: 0.0.3
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: external
+  selector:
+    name: environment

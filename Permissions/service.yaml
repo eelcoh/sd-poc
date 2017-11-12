@@ -1,0 +1,15 @@
+---
+kind: "Service"
+apiVersion: "v1"
+metadata:
+  name: permissions
+  labels:
+    name: permissions
+    version: 0.0.7
+spec:
+  clusterIP: None
+  ports:
+    - port: 80
+      targetPort: external
+  selector:
+    name: permissions

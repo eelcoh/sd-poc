@@ -1,0 +1,47 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: service-discovery
+  labels:
+    name: service-discovery
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  strategy:
+    type: "RollingUpdate"
+  selector:
+    matchLabels:
+      name: "service-discovery"
+  template:
+    metadata:
+      labels:
+        name: "service-discovery"
+        version: "0.0.4"
+    spec:
+      containers:
+        - name: "service-discovery"
+          image: "gcr.io/sd-poc/service-discovery:0.0.4"
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 50m
+            limits:
+              memory: 100Mi
+              cpu: 200m
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: external
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: external
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          ports:
+            - containerPort: 5000
+              name: "external"
+              protocol: "TCP"
